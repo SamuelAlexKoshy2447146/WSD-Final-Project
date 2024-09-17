@@ -1,0 +1,115 @@
+body {
+  background-color: #121212;
+  color: #e0e0e0;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: #e0e0e0;
+}
+.navbar-dark .navbar-nav .nav-link:hover {
+  color: #4CAF50;
+}
+.hero-section {
+  padding: 80px 0;
+  background-color: #1e1e1e;
+  color: #e0e0e0;
+}
+.footer {
+  padding: 20px;
+  background-color: #1e1e1e;
+  text-align: center;
+  color: #e0e0e0;
+}
+
+.container {
+  display: flex;
+  width: 90vw;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.panel {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 60vh;
+  border-radius: 50px;
+  color: #ffffff;
+  cursor: pointer;
+  flex: 0.5;
+  margin: 10px;
+  position: relative;
+  transition: flex 0.7s ease-in;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+}
+
+.panel h3 {
+  font-size: 1.5rem;
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  margin: 0;
+  opacity: 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.panel.active {
+  flex: 5;
+}
+
+.panel.active h3 {
+  opacity: 1;
+  transition: opacity 0.3s ease-in 0.4s;
+}
+
+/* Media Queries for responsive design */
+
+/* Tablets */
+@media (max-width: 1024px) {
+  .panel {
+    height: 50vh;
+  }
+
+  .panel h3 {
+    font-size: 1.2rem;
+  }
+
+  .panel.active {
+    flex: 3; 
+  }
+}
+
+/* Mobile devices */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+    height: 70vh;
+    width: 100vw;
+  }
+  
+  .panel {
+    width: 50%;
+    flex: 0.1;
+    margin: 0.5em 0;
+  }
+
+  .panel.active {
+    flex: 1;
+  }
+
+  .panel h3 {
+    font-size: 1rem;
+  }
+}
+
+/* Extra small mobile devices */
+@media (max-width: 480px) {
+  .panel {
+    height: 35vh;
+  }
+
+  .panel h3 {
+    font-size: 0.9rem;
+  }
+}
