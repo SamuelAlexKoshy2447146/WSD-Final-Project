@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Online Python Editor</title>
-
+    
+    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.0/codemirror.min.css">
     
@@ -45,24 +46,36 @@
 
         <div class="text-center">
             <button class="btn btn-success" onclick="runCode()">Run Code</button>
+            <button class="btn btn-warning" onclick="saveCode()">Save Code</button>
             <button class="btn btn-danger" onclick="clearEditor()">Clear</button>
         </div>
 
         <div id="output" class="mt-4"></div>
     </div>
+
+    <!-- Bootstrap JS and dependencies -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.1/socket.io.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.0/codemirror.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.0/mode/python/python.min.js"></script>
+
     <script>
         const editor = CodeMirror(document.getElementById('editor'), {
             mode: 'text/x-python',
             lineNumbers: true,
             theme: 'dracula',
+            readOnly: false,
+            extraKeys: {
+                "Ctrl-S": function(cm) {
+                    saveCode();
+                }
+            }
         });
+
         const socket = io();
         let debounceTimer;
-        const DEBOUNCE_TIME = 300; 
+        const DEBOUNCE_TIME = 300; // in milliseconds
+
         socket.on('connect', () => {
             console.log('Connected to SocketIO server');
         });
@@ -70,6 +83,8 @@
         socket.on('disconnect', () => {
             console.log('Disconnected from SocketIO server');
         });
+
+        // Debounce logic for editor changes
         editor.on('change', () => {
             clearTimeout(debounceTimer);
             debounceTimer = setTimeout(() => {
@@ -83,9 +98,11 @@
                 editor.setValue(data.code);
             }
         });
+
         function runCode() {
             const code = editor.getValue();
             const userInput = document.getElementById('input').value.split('\n');
+
             fetch('/run', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -99,6 +116,16 @@
                 document.getElementById('output').textContent = 'Error: ' + error.message;
             });
         }
+
+        function saveCode() {
+            const code = editor.getValue();
+            const blob = new Blob([code], { type: 'text/plain' });
+            const link = document.createElement('a');
+            link.href = window.URL.createObjectURL(blob);
+            link.download = 'code.py';  // Set the default filename
+            link.click();
+        }
+
         function clearEditor() {
             editor.setValue('');
             document.getElementById('input').value = '';

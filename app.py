@@ -11,11 +11,15 @@ socketio = SocketIO(app, cors_allowed_origins='*')
 
 @app.route('/')
 def index():
-    return send_from_directory('', 'index.html') #initial page name
+    return send_from_directory('', 'home.html') #initial page name
 
 @app.route('/editor') 
 def editor():
     return send_from_directory('', 'Compiler.html')
+
+@app.route('/about') 
+def editor():
+    return send_from_directory('', 'about.html')
 
 @app.route('/run', methods=['POST'])
 def run_code():
