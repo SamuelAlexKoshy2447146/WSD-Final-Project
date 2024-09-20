@@ -1,0 +1,39 @@
+body {
+  background-color: #1a1a1a;
+  color: #fff;
+}
+.hero-section {
+  padding: 100px 0;
+}
+.expanding-cards {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 50px;
+}
+.panel {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+  background-size: cover;
+  background-position: center;
+  transition: flex 0.3s ease-in-out;
+  border-radius: 10px;
+}
+.panel.active {
+  flex: 3;
+}
+.panel h3 {
+  color: #fff;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+section {
+  padding: 60px 0;
+}
+footer {
+  background-color: #333;
+  padding: 20px;
+  color: #fff;
+  text-align: center;
+}
