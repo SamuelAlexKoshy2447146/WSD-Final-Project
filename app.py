@@ -1,6 +1,7 @@
-from flask import Flask, request, jsonify, send_from_directory, render_template
+from flask import Flask, request, jsonify, send_from_directory, render_template, redirect, url_for
 from flask_cors import CORS
 from flask_socketio import SocketIO, emit
+from pymongo import MongoClient
 import subprocess
 import sys
 import os
@@ -9,10 +10,43 @@ app = Flask(__name__)
 CORS(app)
 socketio = SocketIO(app, cors_allowed_origins="*")
 
+# Setup MongoDB connection
+client = MongoClient("mongodb://localhost:27017/")
+db = client['pycoder'] 
+collection = db['user_data']  
+
 
 @app.route("/")
 def home():
     return render_template("home.html")  # initial page name
+
+
+@app.route("/login")
+def  login():
+    return render_template("main.html")  # login page name
+
+
+# Route for handling form submission
+@app.route('/submit', methods=['POST'])
+def submit():
+    # Collect data from the form
+    name = request.form['name']
+    email = request.form['email']
+    password = request.form['password']
+    role = request.form['role']
+
+    # Insert data into MongoDB
+    data = {
+        'name': name,
+        'email': email,
+        "password": password,
+        "role": role,
+    }
+    if collection.find_one({"email": email}):
+        return jsonify({"message": "Email already exists"}), 400
+    collection.insert_one(data)
+
+    return redirect(url_for('home'))
 
 
 @app.route("/editor")
