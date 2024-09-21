@@ -29,17 +29,16 @@ collection = db["user_data"]
 app.secret_key = "hello"
 
 
+# @app.route("/")
+# def start_up():
+#     return render_template("main.html")  # login page name
+
+
 @app.route("/")
-def start_up():
-    return render_template("main.html")  # login page name
-
-
-@app.route("/home")
 def home():
     if "user" in session:
         return render_template("home.html")  # initial page name
-    else:
-        return redirect(url_for("start_up"))
+    return render_template("main.html")  # home page with login button
 
 
 # Route for handling form submission
@@ -91,15 +90,29 @@ def login():
 
 @app.route("/editor")
 def editor():
-    return send_from_directory("", "Compiler.html")
+    if "user" in session:
+        return render_template("compiler.html")
+    return redirect(url_for("home"))
 
 
 @app.route("/about")
 def about():
     if "user" in session:
-        return send_from_directory("", "about.html")
-    else:
-        return redirect(url_for("start_up"))
+        return render_template("about.html")
+    return redirect(url_for("home"))
+
+
+@app.route("/profile")
+def profile_page():
+    if "user" in session:
+        return render_template("profile.html")
+    return redirect(url_for("home"))
+
+@app.route("/review")
+def review():
+    if "user" in session:
+        return render_template("review.html")
+    return redirect(url_for("home"))
 
 
 @app.route("/run", methods=["POST"])

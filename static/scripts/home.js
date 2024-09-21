@@ -256,7 +256,7 @@ document
                 console.log(result);
                 if (result.status === "success") {
                     // alert("Login successful!");
-                    window.location.href = "/home";
+                    window.location.href = "/";
                 } else {
                     alert("Login failed: " + result.message);
                 }
