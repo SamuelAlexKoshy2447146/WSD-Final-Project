@@ -17,9 +17,6 @@ def index():
 def editor():
     return send_from_directory('', 'Compiler.html')
 
-@app.route('/about') 
-def editor():
-    return send_from_directory('', 'about.html')
 
 @app.route('/run', methods=['POST'])
 def run_code():
