@@ -186,6 +186,13 @@ def review():
     return redirect(url_for("home"))
 
 
+@app.route("/contact")
+def contact():
+    if "user" in session:
+        return render_template("contact.html")
+    return redirect(url_for("home"))
+
+
 @app.route("/logout")
 def logout():
     if "user" in session:
