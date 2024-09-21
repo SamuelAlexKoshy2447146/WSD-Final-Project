@@ -68,6 +68,7 @@
                             aria-controls="product"
                         >
                             <i class="fa-solid fa-box"></i>
+                            <span>Products</span>
                         </a>
                         <ul
                             id="product"
@@ -75,7 +76,10 @@
                             data-bs-parent="#sidebar"
                         >
                             <li class="sidebar-item">
-                                <a href="/editor" class="sidebar-link" target="_blank"
+                                <a
+                                    href="/editor"
+                                    class="sidebar-link"
+                                    target="_blank"
                                     >Code Editor</a
                                 >
                             </li>
@@ -110,8 +114,7 @@
                             <span class="navbar-toggler-icon"></span>
                         </button>
                         <div class="collapse navbar-collapse" id="navbarNav">
-                            <ul class="navbar-nav me-auto">
-                            </ul>
+                            <ul class="navbar-nav me-auto"></ul>
                             <ul class="navbar-nav">
                                 <li class="nav-item">
                                     <span>Hi, Name</span>
@@ -354,7 +357,7 @@
         ></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
-        <script src="{{ url_for('static', filename='scripts/home-logged-in.js') }}"></script>
+        <script src="{{ url_for('static', filename='scripts/home.js') }}"></script>
         <script src="{{ url_for('static', filename='scripts/sidebar.js') }}"></script>
     </body>
 </html>

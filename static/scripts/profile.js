@@ -9,7 +9,7 @@ document.getElementById("mobile").addEventListener("input", () => {
 });
 
 function toggleSaveButton() {
-    document.getElementById("submit").classList.remove("disabled");
+    document.getElementById("save-btn").classList.remove("disabled");
 }
 
 document

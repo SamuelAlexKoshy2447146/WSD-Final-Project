@@ -23,7 +23,8 @@ socketio = SocketIO(app, cors_allowed_origins="*")
 # Setup MongoDB connection
 client = MongoClient("mongodb://localhost:27017/")
 db = client["pycoder"]
-collection = db["user_data"]
+user_collection = db["user_data"]
+review_collection = db["reviews"]
 
 # Setup secret key for session
 app.secret_key = "hello"
@@ -60,9 +61,9 @@ def submit():
         "password": password,
         "role": role,
     }
-    if collection.find_one({"email": email}):
+    if user_collection.find_one({"email": email}):
         return jsonify({"message": "Email already exists"}), 400
-    collection.insert_one(user_data)
+    user_collection.insert_one(user_data)
 
     user_data.pop("_id")
     session["user"] = user_data
@@ -75,7 +76,7 @@ def login():
     if not data:
         return jsonify({"status": "error", "message": "No data provided"}), 400
 
-    user_data = collection.find_one({"email": data.get("email")})
+    user_data = user_collection.find_one({"email": data.get("email")})
     if not user_data:
         return jsonify({"status": "error", "message": "No email was found"}), 400
 
@@ -95,7 +96,7 @@ def update_details():
 
     # Update user data in MongoDB
     form_data = request.json
-    collection.update_one({"email": user_data["email"]}, {"$set": form_data})
+    user_collection.update_one({"email": user_data["email"]}, {"$set": form_data})
 
     # Update the session with the new data
     session["user"].update(form_data)
