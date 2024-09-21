@@ -220,9 +220,7 @@ def get_review():
     reviews_list = list(random_reviews)
 
     for review in reviews_list:
-        review["_id"] = str(
-            review["_id"]
-        )
+        review["_id"] = str(review["_id"])
 
     return jsonify({"status": "success", "reviews": reviews_list})
 
@@ -259,6 +257,13 @@ def run_code():
         os.remove(filename)
 
     return jsonify({"output": output})
+
+
+@app.route("/todo")
+def todo():
+    if "user" in session:
+        return render_template("todo.html")
+    return redirect(url_for("home"))
 
 
 @socketio.on("code_change")
