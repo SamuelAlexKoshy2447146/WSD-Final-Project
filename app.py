@@ -6,6 +6,7 @@ from flask import (
     render_template,
     redirect,
     url_for,
+    session,
 )
 from flask_cors import CORS
 from flask_socketio import SocketIO, emit
@@ -14,6 +15,7 @@ import subprocess
 import sys
 import os
 
+# Setup Flask connection
 app = Flask(__name__)
 CORS(app)
 socketio = SocketIO(app, cors_allowed_origins="*")
@@ -23,6 +25,9 @@ client = MongoClient("mongodb://localhost:27017/")
 db = client["pycoder"]
 collection = db["user_data"]
 
+# Setup secret key for session
+app.secret_key = "hello"
+
 
 @app.route("/")
 def start_up():
@@ -31,17 +36,15 @@ def start_up():
 
 @app.route("/home")
 def home():
-    return render_template("home.html")  # initial page name
+    if "user" in session:
+        return render_template("home.html")  # initial page name
+    else:
+        return redirect(url_for("start_up"))
 
 
 # Route for handling form submission
 @app.route("/submit", methods=["POST"])
 def submit():
-    # Collect data from the form
-    # name = request.form['name']
-    # email = request.form['email']
-    # password = request.form['password']
-    # role = request.form['role']
     data = request.json
     if not data:
         return jsonify({"status": "error", "message": "No data provided"}), 400
@@ -52,17 +55,18 @@ def submit():
     role = data.get("role")
 
     # Insert data into MongoDB
-    data = {
+    user_data = {
         "name": name,
         "email": email,
         "password": password,
         "role": role,
     }
     if collection.find_one({"email": email}):
-        print(data)
         return jsonify({"message": "Email already exists"}), 400
-    collection.insert_one(data)
+    collection.insert_one(user_data)
 
+    user_data.pop("_id")
+    session["user"] = user_data
     return jsonify({"status": "success", "message": "Registration successful"})
 
 
@@ -79,8 +83,10 @@ def login():
     if user_data.get("password") != data.get("password"):
         return jsonify({"status": "error", "message": "Incorrect password"}), 400
 
-    print(type(user_data))
-    return jsonify({"status": "success", **user_data})
+    user_data.pop("_id")
+    session["user"] = user_data
+    print("user:", user_data)
+    return jsonify({"status": "success"})
 
 
 @app.route("/editor")
@@ -90,7 +96,10 @@ def editor():
 
 @app.route("/about")
 def about():
-    return send_from_directory("", "about.html")
+    if "user" in session:
+        return send_from_directory("", "about.html")
+    else:
+        return redirect(url_for("start_up"))
 
 
 @app.route("/run", methods=["POST"])
