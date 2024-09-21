@@ -134,7 +134,7 @@ def update_details():
 @app.route("/get_user")
 def fetch_data():
     user_email = session["user"].get("email")
-    
+
     user = user_collection.find_one({"email": user_email})
 
     if not user:
@@ -144,15 +144,17 @@ def fetch_data():
     if user.get("profile_picture"):
         profile_picture = base64.b64encode(user["profile_picture"]).decode("utf-8")
 
-    return jsonify({
-        "status": "success",
-        "user": {
-            "name": user.get("name"),
-            "email": user.get("email"),
-            "mobile": user.get("mobile"),
-            "profile_picture": profile_picture
+    return jsonify(
+        {
+            "status": "success",
+            "user": {
+                "name": user.get("name"),
+                "email": user.get("email"),
+                "mobile": user.get("mobile"),
+                "profile_picture": profile_picture,
+            },
         }
-    })
+    )
 
 
 @app.route("/editor")
@@ -183,6 +185,13 @@ def review():
     return redirect(url_for("home"))
 
 
+@app.route("/logout")
+def logout():
+    if "user" in session:
+        session.pop("user", None)
+    return redirect((url_for("home")))
+
+
 @app.route("/review/post", methods=["POST"])
 def post_review():
     data = request.json
@@ -203,6 +212,19 @@ def post_review():
     print(review_data)
 
     return jsonify({"status": "success", "message": "Review posted"})
+
+
+@app.route("/review/get")
+def get_review():
+    random_reviews = review_collection.aggregate([{"$sample": {"size": 6}}])
+    reviews_list = list(random_reviews)
+
+    for review in reviews_list:
+        review["_id"] = str(
+            review["_id"]
+        )
+
+    return jsonify({"status": "success", "reviews": reviews_list})
 
 
 @app.route("/run", methods=["POST"])

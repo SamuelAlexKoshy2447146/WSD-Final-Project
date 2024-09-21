@@ -90,7 +90,7 @@
                     </li>
                 </ul>
                 <div class="sidebar-footer">
-                    <a href="#" class="sidebar-link">
+                    <a href="/logout" class="sidebar-link">
                         <i class="fa-solid fa-right-to-bracket"></i>
                         <span>Logout</span>
                     </a>
@@ -162,11 +162,11 @@
                                 <div class="col-md-4 mb-3">
                                     <div class="card small-card">
                                         <div class="card-body">
-                                            <p class="card-text">
+                                            <p class="card-text" id="rev1">
                                                 "Lorem ipsum dolor sit amet,
                                                 consectetur adipisicing elit."
                                             </p>
-                                            <h6 class="card-title">
+                                            <h6 class="card-title" id="name1">
                                                 - John Doe
                                             </h6>
                                         </div>
@@ -175,12 +175,12 @@
                                 <div class="col-md-4 mb-3">
                                     <div class="card small-card">
                                         <div class="card-body">
-                                            <p class="card-text">
+                                            <p class="card-text" id="rev2">
                                                 "Dolorem magnam rerum,
                                                 accusantium minima laudantium
                                                 aperiam optio atque?"
                                             </p>
-                                            <h6 class="card-title">
+                                            <h6 class="card-title" id="name2">
                                                 - Jane Smith
                                             </h6>
                                         </div>
@@ -189,12 +189,12 @@
                                 <div class="col-md-4 mb-3">
                                     <div class="card small-card">
                                         <div class="card-body">
-                                            <p class="card-text">
+                                            <p class="card-text" id="rev3">
                                                 "Consectetur adipisicing elit.
                                                 Quasi molestias nihil quis
                                                 cumque."
                                             </p>
-                                            <h6 class="card-title">
+                                            <h6 class="card-title" id="name3">
                                                 - Sam Wilson
                                             </h6>
                                         </div>
@@ -238,11 +238,11 @@
                                 <div class="col-md-4 mb-3">
                                     <div class="card small-card">
                                         <div class="card-body">
-                                            <p class="card-text">
+                                            <p class="card-text" id="rev4">
                                                 "Lorem ipsum dolor sit amet,
                                                 consectetur adipisicing elit."
                                             </p>
-                                            <h6 class="card-title">
+                                            <h6 class="card-title" id="name4">
                                                 - John Doe
                                             </h6>
                                         </div>
@@ -251,12 +251,12 @@
                                 <div class="col-md-4 mb-3">
                                     <div class="card small-card">
                                         <div class="card-body">
-                                            <p class="card-text">
+                                            <p class="card-text" id="rev5">
                                                 "Dolorem magnam rerum,
                                                 accusantium minima laudantium
                                                 aperiam optio atque?"
                                             </p>
-                                            <h6 class="card-title">
+                                            <h6 class="card-title" id="name5">
                                                 - Jane Smith
                                             </h6>
                                         </div>
@@ -265,12 +265,12 @@
                                 <div class="col-md-4 mb-3">
                                     <div class="card small-card">
                                         <div class="card-body">
-                                            <p class="card-text">
+                                            <p class="card-text" id="rev6">
                                                 "Consectetur adipisicing elit.
                                                 Quasi molestias nihil quis
                                                 cumque."
                                             </p>
-                                            <h6 class="card-title">
+                                            <h6 class="card-title" id="name6">
                                                 - Sam Wilson
                                             </h6>
                                         </div>
@@ -287,7 +287,7 @@
                     <div class="container team-container">
                         <div class="team-member">
                             <img
-                                src="https://images.unsplash.com/photo-1647685658173-94c4f42725fd?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                                src="{{url_for('static', filename='sam.JPG')}}"
                                 alt="Team Member"
                             />
                             <h4>Samuel Alex Koshy</h4>
@@ -306,7 +306,7 @@
                         </div>
                         <div class="team-member">
                             <img
-                                src="https://images.unsplash.com/photo-1540221516906-a9642b6a2e73?q=80&w=1933&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                                src="{{url_for('static', filename='parichoy.jpg')}}"
                                 alt="Team Member"
                             />
                             <h4>Parichoy Nandi</h4>
@@ -325,7 +325,7 @@
                         </div>
                         <div class="team-member">
                             <img
-                                src="https://images.unsplash.com/photo-1534330207526-8e81f10ec6fc?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                                src="{{url_for('static', filename='jishnu.png')}}"
                                 alt="Team Member"
                             />
                             <h4>Jishnu Jayaraj</h4>
@@ -364,5 +364,6 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
         <script src="{{ url_for('static', filename='scripts/home.js') }}"></script>
         <script src="{{ url_for('static', filename='scripts/sidebar.js') }}"></script>
+        <script src="{{ url_for('static', filename='scripts/about.js') }}"></script>
     </body>
 </html>
