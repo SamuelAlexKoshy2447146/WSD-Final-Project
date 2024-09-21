@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Organization Homepage</title>
+        <title>About Us</title>
         <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
             rel="stylesheet"
@@ -22,7 +22,7 @@
         />
         <link
             rel="stylesheet"
-            href="{{url_for('static', filename='css/home-logged-in.css')}}"
+            href="{{url_for('static', filename='css/sidebar.css')}}"
         />
         <style></style>
     </head>
@@ -34,20 +34,14 @@
                         <i class="fa-solid fa-bars"></i>
                     </button>
                     <div class="sidebar-logo">
-                        <a href="#">Company</a>
+                        <a href="/">Company</a>
                     </div>
                 </div>
                 <ul class="sidebar-nav">
                     <li class="sidebar-item">
-                        <a href="./" class="sidebar-link">
+                        <a href="/" class="sidebar-link">
                             <i class="fa-solid fa-house"></i>
                             <span>Home</span>
-                        </a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a href="/profile" class="sidebar-link">
-                            <i class="fa-solid fa-user"></i>
-                            <span>Profile</span>
                         </a>
                     </li>
                     <li class="sidebar-item">
@@ -57,15 +51,21 @@
                         </a>
                     </li>
                     <li class="sidebar-item">
-                        <a href="/review" class="sidebar-link">
-                            <i class="fa-solid fa-pen-nib"></i>
-                            <span>Review</span>
+                        <a href="/editor" class="sidebar-link">
+                            <i class="fa-solid fa-code"></i>
+                            <span>Code Editor</span>
                         </a>
                     </li>
                     <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">
-                            <i class="fa-solid fa-gear"></i>
-                            <span>Settings</span>
+                        <a href="/profile" class="sidebar-link">
+                            <i class="fa-solid fa-user"></i>
+                            <span>Profile</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="/review" class="sidebar-link">
+                            <i class="fa-solid fa-pen-nib"></i>
+                            <span>Review</span>
                         </a>
                     </li>
                 </ul>
@@ -76,11 +76,9 @@
                     </a>
                 </div>
             </aside>
-            <div class="main p-3">
-                <!-- Sticky Navbar -->
-                <nav
-                    class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top"
-                >
+            <div class="main">
+                <!-- Navbar -->
+                <nav class="navbar navbar-expand-lg navbar-dark">
                     <div class="container-fluid">
                         <a class="navbar-brand" href="#">Our Organization</a>
                         <button
@@ -115,17 +113,16 @@
                         </div>
                     </div>
                 </nav>
-
                 <!-- Hero Section -->
-                <section id="hero" class="hero-section text-center my-xxl-5">
-                    <div class="container">
-                        <h1 class="mb-4">About</h1>
+                <section id="hero" class="hero-section text-center my-5">
+                    <div class="container text">
+                        <h1>About</h1>
                     </div>
                 </section>
 
                 <!-- About Section -->
-                <section id="about" class="my-5">
-                    <div class="about-container">
+                <section id="about" class="my-5 p-0">
+                    <div class="container">
                         <div class="about-content d-flex">
                             <div class="image me-4">
                                 <img
@@ -135,10 +132,10 @@
                                 />
                             </div>
                             <div class="text">
-                                <h2>
+                                <h3>
                                     Lorem, ipsum dolor sit amet consectetur
                                     adipisicing elit.
-                                </h2>
+                                </h3>
                                 <p>
                                     Lorem ipsum, dolor sit amet consectetur
                                     adipisicing elit. Excepturi reiciendis sequi
@@ -198,21 +195,103 @@
                     </div>
                 </section>
 
+                <section id="about" class="my-5 p-0">
+                    <div class="container">
+                        <div class="about-content d-flex">
+                            <!-- Text First -->
+                            <div class="text me-4">
+                                <h3>
+                                    Lorem, ipsum dolor sit amet consectetur
+                                    adipisicing elit.
+                                </h3>
+                                <p>
+                                    Lorem ipsum, dolor sit amet consectetur
+                                    adipisicing elit. Excepturi reiciendis sequi
+                                    doloremque ducimus sint blanditiis.
+                                </p>
+                            </div>
+                            <!-- Image After Text -->
+                            <div class="image">
+                                <img
+                                    src="https://images.unsplash.com/photo-1664575600796-ffa828c5cb6e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                                    alt="About Us Image"
+                                    class="img-fluid"
+                                />
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Reviews Section within About -->
+                    <div id="reviews" class="mt-5">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-md-4 mb-3">
+                                    <div class="card small-card">
+                                        <div class="card-body">
+                                            <p class="card-text">
+                                                "Lorem ipsum dolor sit amet,
+                                                consectetur adipisicing elit."
+                                            </p>
+                                            <h6 class="card-title">
+                                                - John Doe
+                                            </h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <div class="card small-card">
+                                        <div class="card-body">
+                                            <p class="card-text">
+                                                "Dolorem magnam rerum,
+                                                accusantium minima laudantium
+                                                aperiam optio atque?"
+                                            </p>
+                                            <h6 class="card-title">
+                                                - Jane Smith
+                                            </h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <div class="card small-card">
+                                        <div class="card-body">
+                                            <p class="card-text">
+                                                "Consectetur adipisicing elit.
+                                                Quasi molestias nihil quis
+                                                cumque."
+                                            </p>
+                                            <h6 class="card-title">
+                                                - Sam Wilson
+                                            </h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
                 <!-- Team Section -->
-                <section id="team" class="my-xxl-5">
+                <section id="team" class="my-5">
                     <h2>Our Team</h2>
-                    <div class="team-container">
+                    <div class="container team-container">
                         <div class="team-member">
                             <img
                                 src="https://images.unsplash.com/photo-1647685658173-94c4f42725fd?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                                 alt="Team Member"
                             />
-                            <h3>Alich Harry</h3>
+                            <h4>Samuel Alex Koshy</h4>
                             <p>Developer</p>
                             <div class="social-links">
-                                <a href="#">Facebook</a>
-                                <a href="#">Twitter</a>
-                                <a href="#">LinkedIn</a>
+                                <a href="#"
+                                    ><i class="fa-brands fa-facebook"></i
+                                ></a>
+                                <a href="#"
+                                    ><i class="fa-brands fa-github"></i
+                                ></a>
+                                <a href="#"
+                                    ><i class="fa-brands fa-linkedin"></i
+                                ></a>
                             </div>
                         </div>
                         <div class="team-member">
@@ -220,12 +299,18 @@
                                 src="https://images.unsplash.com/photo-1540221516906-a9642b6a2e73?q=80&w=1933&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                                 alt="Team Member"
                             />
-                            <h3>Alich Harry</h3>
+                            <h4>Parichoy Nandi</h4>
                             <p>Developer</p>
                             <div class="social-links">
-                                <a href="#">Facebook</a>
-                                <a href="#">Twitter</a>
-                                <a href="#">LinkedIn</a>
+                                <a href="#"
+                                    ><i class="fa-brands fa-facebook"></i
+                                ></a>
+                                <a href="#"
+                                    ><i class="fa-brands fa-github"></i
+                                ></a>
+                                <a href="#"
+                                    ><i class="fa-brands fa-linkedin"></i
+                                ></a>
                             </div>
                         </div>
                         <div class="team-member">
@@ -233,19 +318,25 @@
                                 src="https://images.unsplash.com/photo-1534330207526-8e81f10ec6fc?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                                 alt="Team Member"
                             />
-                            <h3>Alich Harry</h3>
+                            <h4>Jishnu Jayaraj</h4>
                             <p>Developer</p>
                             <div class="social-links">
-                                <a href="#">Facebook</a>
-                                <a href="#">Twitter</a>
-                                <a href="#">LinkedIn</a>
+                                <a href="#"
+                                    ><i class="fa-brands fa-facebook"></i
+                                ></a>
+                                <a href="#"
+                                    ><i class="fa-brands fa-github"></i
+                                ></a>
+                                <a href="#"
+                                    ><i class="fa-brands fa-linkedin"></i
+                                ></a>
                             </div>
                         </div>
                     </div>
                 </section>
 
                 <!-- Footer -->
-                <footer class="footer">
+                <footer class="footer mt-5">
                     <p>&copy; 2024 Our Organization. All Rights Reserved.</p>
                 </footer>
             </div>
