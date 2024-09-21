@@ -131,3 +131,11 @@ a.sidebar-link:hover {
   transform: rotate(45deg);
   transition: all .2s ease-out;
 }
+
+.submenu {
+  display: none; /* Hide submenu by default */
+}
+
+.submenu.active {
+  display: block; /* Show submenu when active */
+}
