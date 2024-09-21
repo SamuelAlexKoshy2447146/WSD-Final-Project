@@ -22,7 +22,7 @@
             href="{{url_for('static', filename='css/profile.css')}}"
         />
     </head>
-    <body class="bg-dark text-light">
+    <body>
         <div class="wrapper">
             <aside id="sidebar">
                 <div class="d-flex">
@@ -41,21 +41,27 @@
                         </a>
                     </li>
                     <li class="sidebar-item">
-                        <a href="/profile" class="sidebar-link">
-                            <i class="fa-solid fa-user"></i>
-                            <span>Profile</span>
-                        </a>
-                    </li>
-                    <li class="sidebar-item">
                         <a href="/about" class="sidebar-link">
                             <i class="fa-solid fa-users"></i>
                             <span>About Us</span>
                         </a>
                     </li>
                     <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">
-                            <i class="fa-solid fa-gear"></i>
-                            <span>Settings</span>
+                        <a href="/editor" class="sidebar-link">
+                            <i class="fa-solid fa-code"></i>
+                            <span>Code Editor</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="/profile" class="sidebar-link">
+                            <i class="fa-solid fa-user"></i>
+                            <span>Profile</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="/review" class="sidebar-link">
+                            <i class="fa-solid fa-pen-nib"></i>
+                            <span>Review</span>
                         </a>
                     </li>
                 </ul>
@@ -66,110 +72,164 @@
                     </a>
                 </div>
             </aside>
-            <div
-                class="d-flex flex-column justify-content-center align-items-center main p-3"
-            >
-                <div class="container py-5 bg-dark text-light rounded">
-                    <div class="header mb-4 text-center">
-                        <h1 class="h1">User Name</h1>
-                    </div>
-                    <div class="row g-4">
-                        <!-- Profile Section -->
-                        <div
-                            class="d-flex flex-column align-items-center col-md-4 text-center"
+            <div class="main">
+                <!-- Navbar -->
+                <nav class="navbar navbar-expand-lg navbar-dark">
+                    <div class="container-fluid">
+                        <a class="navbar-brand" href="#">Our Organization</a>
+                        <button
+                            class="navbar-toggler"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#navbarNav"
+                            aria-controls="navbarNav"
+                            aria-expanded="false"
+                            aria-label="Toggle navigation"
                         >
-                            <div class="profile-pic mb-3">
-                                <div
-                                    class="rounded-circle bg-secondary"
-                                    style="width: 150px; height: 150px"
-                                ></div>
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                            <ul class="navbar-nav me-auto">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/"
+                                        >Home</a
+                                    >
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/about"
+                                        >About</a
+                                    >
+                                </li>
+                            </ul>
+                            <ul class="navbar-nav">
+                                <li class="nav-item"><span>Hi, Name</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+
+                <!-- Hero Section -->
+                <section id="hero" class="hero-section text-center my-5">
+                    <div class="container">
+                        <h1>User Profile</h1>
+                    </div>
+                </section>
+
+                <!-- Profile Form Section -->
+                <section id="profile-form" class="container my-5">
+                    <form style="max-width: 800px; margin: auto">
+                        <!-- Profile Image and Upload in a Column -->
+                        <div class="row mb-3">
+                            <div class="col-md-12 text-center">
+                                <div class="image">
+                                    <img
+                                        src="https://via.placeholder.com/150"
+                                        class="rounded-circle mb-3"
+                                        alt="Profile Picture"
+                                    />
+                                </div>
+                                <div class="image-input text-start">
+                                    <label for="photo-upload" class="form-label"
+                                        >Upload a different photo:</label
+                                    >
+                                    <input
+                                        type="file"
+                                        class="form-control bg-light"
+                                        id="photo-upload"
+                                    />
+                                </div>
                             </div>
-                            <label for="photo-upload" class="form-label"
-                                >Upload a different photo...</label
-                            >
-                            <input
-                                type="file"
-                                class="form-control bg-dark text-light border-secondary"
-                                id="photo-upload"
-                            />
                         </div>
 
-                        <!-- Form Section -->
-                        <div class="col-md-8">
-                            <form id="updateDetails">
-                                <div class="row mb-3">
-                                    <div class="col-md-6">
-                                        <label
-                                            for="first-name"
-                                            class="form-label"
-                                            >First Name</label
-                                        >
-                                        <input
-                                            type="text"
-                                            class="form-control bg-dark text-light border-secondary"
-                                            id="first-name"
-                                            placeholder="First name"
-                                        />
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label
-                                            for="last-name"
-                                            class="form-label"
-                                            >Last Name</label
-                                        >
-                                        <input
-                                            type="text"
-                                            class="form-control bg-dark text-light border-secondary"
-                                            id="last-name"
-                                            placeholder="Last name"
-                                        />
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <div class="col-md-6">
-                                        <label for="email" class="form-label"
-                                            >Email</label
-                                        >
-                                        <input
-                                            type="email"
-                                            class="form-control bg-dark text-light border-secondary"
-                                            id="email"
-                                            placeholder="you@email.com"
-                                        />
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="mobile" class="form-label"
-                                            >Mobile</label
-                                        >
-                                        <input
-                                            type="text"
-                                            class="form-control bg-dark text-light border-secondary"
-                                            id="mobile"
-                                            placeholder="Enter mobile number"
-                                        />
-                                    </div>
-                                </div>
-                                <div class="d-flex justify-content-start gap-2">
-                                    <button
-                                        id="submit"
-                                        type="submit"
-                                        class="btn btn-success disabled"
-                                    >
-                                        Save
-                                    </button>
-                                    <button
-                                        type="reset"
-                                        class="btn btn-light text-dark"
-                                    >
-                                        Change Password
-                                    </button>
-                                </div>
-                            </form>
+                        <!-- First Name and Last Name -->
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="first-name" class="form-label"
+                                    >First Name</label
+                                >
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="first-name"
+                                    placeholder="First Name"
+                                />
+                            </div>
+                            <div class="col-md-6">
+                                <label for="last-name" class="form-label"
+                                    >Last Name</label
+                                >
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="last-name"
+                                    placeholder="Last Name"
+                                />
+                            </div>
                         </div>
-                    </div>
-                </div>
+
+                        <!-- Email and Phone -->
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="email" class="form-label"
+                                    >Email</label
+                                >
+                                <input
+                                    type="email"
+                                    class="form-control"
+                                    id="email"
+                                    placeholder="you@example.com"
+                                />
+                            </div>
+                            <div class="col-md-6">
+                                <label for="mobile" class="form-label"
+                                    >Mobile</label
+                                >
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="mobile"
+                                    placeholder="Mobile Number"
+                                />
+                            </div>
+                        </div>
+
+                        <!-- Type of User -->
+                        <div class="row mb-3">
+                            <div class="col-md-12">
+                                <label for="user-type" class="form-label"
+                                    >User Type</label
+                                >
+                                <select class="form-select" id="user-type">
+                                    <option selected>Select type</option>
+                                    <option value="admin">Admin</option>
+                                    <option value="user">User</option>
+                                    <option value="guest">Guest</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Save Button -->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <button
+                                    type="submit"
+                                    class="btn btn-success disabled"
+                                    id="save-btn"
+                                >
+                                    Save Changes
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </section>
+
+                <!-- Footer -->
+                <footer class="footer">
+                    <p>&copy; 2024 Our Organization. All Rights Reserved.</p>
+                </footer>
             </div>
         </div>
+
         <script
             src="https://kit.fontawesome.com/cc6961611c.js"
             crossorigin="anonymous"
