@@ -100,7 +100,6 @@ def update_details():
     # Update the session with the new data
     session["user"].update(form_data)
     session.modified = True
-    render_template("profile.html")
 
     return jsonify(
         {

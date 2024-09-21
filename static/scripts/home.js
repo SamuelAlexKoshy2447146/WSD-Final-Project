@@ -62,7 +62,6 @@ function showError(inputId, errorId, iconId, message) {
     if (errorElement && errorIcon) {
         errorElement.textContent = message;
         errorIcon.style.display = "inline";
-        console.log(`${errorId} updated`);
     } else {
         console.error(
             `Error: Element with ID ${errorId} or ${iconId} not found.`
@@ -186,7 +185,7 @@ document
                 .catch((error) => {
                     console.log("Already have email");
                     console.log(error);
-                    alert("Error submitting form");
+                    // alert("Error submitting form");
                 });
             // const users = getUserData();
             // users.push({
@@ -244,12 +243,7 @@ document
             }),
         })
             .then((response) => {
-                // Check if the response is okay
-                if (response.ok) {
-                    return response.json(); // Parse the JSON response
-                } else {
-                    throw new Error("An error occurred during login.");
-                }
+                return response.json();
             })
             .then((result) => {
                 // Handle the JSON result
@@ -257,6 +251,12 @@ document
                 if (result.status === "success") {
                     // alert("Login successful!");
                     window.location.href = "/";
+                } else if (result.message === "No email was found") {
+                    document.getElementById("loginEmailError").textContent =
+                        "Not a valid email";
+                } else if (result.message === "Incorrect password") {
+                    document.getElementById("loginPasswordError").textContent =
+                        "Incorrect password";
                 } else {
                     alert("Login failed: " + result.message);
                 }
@@ -266,28 +266,6 @@ document
                 console.error("Error during login:", error);
                 alert("Failed to log in. Check your network and try again.");
             });
-        // const users = getUserData();
-        // const user = users.find(
-        //     (user) => user.email === email && user.password === password
-        // );
-        // if (user) {
-        //     notify("Login successful!", "success");
-        //     window.location.href = "/";
-        // } else {
-        //     notify("Invalid email or password.", "error");
-        //     showError(
-        //         "loginEmail",
-        //         "loginError",
-        //         "loginEmailErrorIcon",
-        //         "Invalid email or password."
-        //     );
-        //     showError(
-        //         "loginPassword",
-        //         "loginError",
-        //         "loginPasswordErrorIcon",
-        //         "Invalid email or password."
-        //     );
-        // }
     });
 
 function notify(message, type = "success", duration = 10000) {

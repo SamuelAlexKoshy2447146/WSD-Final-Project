@@ -182,6 +182,10 @@
                                     id="loginEmail"
                                     placeholder="Enter your email"
                                 />
+                                <p
+                                    id="loginEmailError"
+                                    class="text-red-500 text-sm absolute right-0 top-full mt-1"
+                                ></p>
                             </div>
                             <div class="mb-3">
                                 <label for="loginPassword" class="form-label"
@@ -193,16 +197,20 @@
                                     id="loginPassword"
                                     placeholder="Enter your password"
                                 />
-                                <i
+                                <!-- <i
                                     id="toggleLoginPassword"
                                     class="fas fa-eye absolute right-2 top-2.5 cursor-pointer"
                                     style="margin-top: 25px"
-                                ></i>
+                                ></i> -->
                                 <i
                                     class="fas fa-times error-icon"
                                     id="loginPasswordErrorIcon"
                                     style="margin-right: 30px"
                                 ></i>
+                                <p
+                                    id="loginPasswordError"
+                                    class="text-red-500 text-sm absolute right-0 top-full mt-1"
+                                ></p>
                             </div>
                             <button type="submit" class="btn btn-primary">
                                 Login
