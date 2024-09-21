@@ -71,9 +71,16 @@ def login():
     data = request.json
     if not data:
         return jsonify({"status": "error", "message": "No data provided"}), 400
-    
-    
-    return jsonify({"status": "success"})
+
+    user_data = collection.find_one({"email": data.get("email")})
+    if not user_data:
+        return jsonify({"status": "error", "message": "No email was found"}), 400
+
+    if user_data.get("password") != data.get("password"):
+        return jsonify({"status": "error", "message": "Incorrect password"}), 400
+
+    print(type(user_data))
+    return jsonify({"status": "success", **user_data})
 
 
 @app.route("/editor")

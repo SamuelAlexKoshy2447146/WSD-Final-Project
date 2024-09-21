@@ -227,33 +227,68 @@ document.getElementById("confirmPassword").addEventListener("input", () => {
     toggleSignupButton();
 });
 
-document.getElementById("loginForm").addEventListener("submit", (event) => {
-    event.preventDefault();
-    const email = document.getElementById("loginEmail").value.trim();
-    const password = document.getElementById("loginPassword").value.trim();
-    const users = getUserData();
-    const user = users.find(
-        (user) => user.email === email && user.password === password
-    );
-    if (user) {
-        notify("Login successful!", "success");
-        window.location.href = "https://www.christuniversity.in";
-    } else {
-        notify("Invalid email or password.", "error");
-        showError(
-            "loginEmail",
-            "loginError",
-            "loginEmailErrorIcon",
-            "Invalid email or password."
-        );
-        showError(
-            "loginPassword",
-            "loginError",
-            "loginPasswordErrorIcon",
-            "Invalid email or password."
-        );
-    }
-});
+document
+    .getElementById("loginForm")
+    .addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const email = document.getElementById("loginEmail").value.trim();
+        const password = document.getElementById("loginPassword").value.trim();
+        fetch("/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                email: email,
+                password: password,
+            }),
+        })
+            .then((response) => {
+                // Check if the response is okay
+                if (response.ok) {
+                    return response.json(); // Parse the JSON response
+                } else {
+                    throw new Error("An error occurred during login.");
+                }
+            })
+            .then((result) => {
+                // Handle the JSON result
+                console.log(result);
+                if (result.status === "success") {
+                    // alert("Login successful!");
+                    window.location.href = "/home";
+                } else {
+                    alert("Login failed: " + result.message);
+                }
+            })
+            .catch((error) => {
+                // Handle any errors that occurred
+                console.error("Error during login:", error);
+                alert("Failed to log in. Check your network and try again.");
+            });
+        // const users = getUserData();
+        // const user = users.find(
+        //     (user) => user.email === email && user.password === password
+        // );
+        // if (user) {
+        //     notify("Login successful!", "success");
+        //     window.location.href = "/";
+        // } else {
+        //     notify("Invalid email or password.", "error");
+        //     showError(
+        //         "loginEmail",
+        //         "loginError",
+        //         "loginEmailErrorIcon",
+        //         "Invalid email or password."
+        //     );
+        //     showError(
+        //         "loginPassword",
+        //         "loginError",
+        //         "loginPasswordErrorIcon",
+        //         "Invalid email or password."
+        //     );
+        // }
+    });
 
 function notify(message, type = "success", duration = 10000) {
     const notification = document.getElementById("notification");
