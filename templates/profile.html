@@ -134,6 +134,7 @@
                 <section id="profile-form" class="container my-5">
                     <form
                         id="updateDetails"
+                        enctype="multipart/form-data"
                         style="max-width: 800px; margin: auto"
                     >
                         <!-- Profile Image and Upload in a Column -->
@@ -141,9 +142,16 @@
                             <div class="col-md-12 text-center">
                                 <div class="image">
                                     <img
+                                        id="profile-picture"
                                         src="https://via.placeholder.com/150"
                                         class="rounded-circle mb-3"
                                         alt="Profile Picture"
+                                        style="
+                                            width: 150px;
+                                            height: 150px;
+                                            object-fit: cover;
+                                            border-radius: 50%;
+                                        "
                                     />
                                 </div>
                                 <div class="image-input text-start">
@@ -173,15 +181,18 @@
                                 />
                             </div>
                             <div class="col-md-6">
-                                <label for="last-name" class="form-label"
-                                    >Last Name</label
+                                <label for="user-type" class="form-label"
+                                    >User Type</label
                                 >
-                                <input
-                                    type="text"
-                                    class="form-control"
-                                    id="last-name"
-                                    placeholder="Last Name"
-                                />
+                                <select class="form-select" id="user-type">
+                                    <option selected>Select type</option>
+                                    <option value="student">Student</option>
+                                    <option value="teacher">Teacher</option>
+                                    <option value="professional">
+                                        Professional
+                                    </option>
+                                    <option value="others">Others</option>
+                                </select>
                             </div>
                         </div>
 
@@ -208,21 +219,6 @@
                                     id="mobile"
                                     placeholder="Mobile Number"
                                 />
-                            </div>
-                        </div>
-
-                        <!-- Type of User -->
-                        <div class="row mb-3">
-                            <div class="col-md-12">
-                                <label for="user-type" class="form-label"
-                                    >User Type</label
-                                >
-                                <select class="form-select" id="user-type">
-                                    <option selected>Select type</option>
-                                    <option value="admin">Admin</option>
-                                    <option value="user">User</option>
-                                    <option value="guest">Guest</option>
-                                </select>
                             </div>
                         </div>
 

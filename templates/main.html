@@ -20,135 +20,101 @@
         />
     </head>
     <body>
-        <!-- Navbar -->
-        <nav class="navbar navbar-expand-lg navbar-dark">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#">Our Organization</a>
-                <button
-                    class="navbar-toggler"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#navbarNav"
-                    aria-controls="navbarNav"
-                    aria-expanded="false"
-                    aria-label="Toggle navigation"
-                >
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav me-auto"></ul>
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item px-1">
-                            <a
-                                class="btn btn-outline-primary"
-                                href="#"
-                                data-bs-toggle="modal"
-                                data-bs-target="#loginModal"
-                                >Login</a
-                            >
-                        </li>
-                        <li class="nav-item px-1">
-                            <a
-                                class="btn btn-outline-success"
-                                href="#"
-                                data-bs-toggle="modal"
-                                data-bs-target="#registerModal"
-                                >Register</a
-                            >
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+        <div class="wrapper">
+            <section id="hero" class="hero-section text-center">
+                <!-- Navbar -->
+                <nav class="navbar navbar-expand-lg navbar-dark">
+                    <div class="container-fluid">
+                        <a class="navbar-brand" href="#">Our Organization</a>
+                        <button
+                            class="navbar-toggler"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#navbarNav"
+                            aria-controls="navbarNav"
+                            aria-expanded="false"
+                            aria-label="Toggle navigation"
+                        >
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                            <ul class="navbar-nav me-auto"></ul>
+                            <ul class="navbar-nav mr-auto">
+                                <li class="nav-item px-1">
+                                    <a
+                                        class="btn btn-outline-primary"
+                                        href="#"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#loginModal"
+                                        >Login</a
+                                    >
+                                </li>
+                                <li class="nav-item px-1">
+                                    <a
+                                        class="btn btn-outline-success"
+                                        href="#"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#registerModal"
+                                        >Register</a
+                                    >
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
 
-        <!-- Hero Section -->
-        <section id="hero" class="hero-section text-center">
-            <div class="container">
-                <h1 class="mb-4">We Build What You Need</h1>
-                <p class="lead mb-4">
-                    Our organization focuses on delivering customized products
-                    that match the specific needs of our clients. We pride
-                    ourselves on innovation, efficiency, and customer
-                    satisfaction.
-                </p>
-                <a href="#services" class="btn btn-primary"
-                    >Explore Our Services</a
-                >
-            </div>
-        </section>
+                <!-- Background Video -->
+                <video autoplay muted loop id="heroVideo" class="video-bg">
+                    <source
+                        src="{{url_for('static', filename='demo_video.mp4')}}"
+                        type="video/mp4"
+                    />
+                    Your browser does not support the video tag.
+                </video>
 
-        <!-- Expanding Cards Section -->
-        <section class="container my-5">
-            <div
-                class="panel active"
-                style="
-                    background-image: url('https://images.unsplash.com/photo-1713557112617-e12d67bddc3a?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
-                "
-            >
-                <h3>Card 1</h3>
-            </div>
-            <div
-                class="panel"
-                style="
-                    background-image: url('https://images.unsplash.com/photo-1700427296131-0cc4c4610fc6?q=80&w=1776&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
-                "
-            >
-                <h3>Card 2</h3>
-            </div>
-            <div
-                class="panel"
-                style="
-                    background-image: url('https://images.unsplash.com/photo-1689443111384-1cf214df988a?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
-                "
-            >
-                <h3>Card 3</h3>
-            </div>
-            <div
-                class="panel"
-                style="
-                    background-image: url('https://images.unsplash.com/photo-1697952431907-8542919a16b3?q=80&w=1858&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
-                "
-            >
-                <h3>Card 4</h3>
-            </div>
-            <div
-                class="panel"
-                style="
-                    background-image: url('https://images.unsplash.com/photo-1562408590-e32931084e23?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
-                "
-            >
-                <h3>Card 5</h3>
-            </div>
-        </section>
-
-        <!-- Services Section -->
-        <section id="services" class="container py-5">
-            <div class="row text-center">
-                <div class="col-md-4">
-                    <h3>Custom Software</h3>
-                    <p>We develop software tailored to your business needs.</p>
-                </div>
-                <div class="col-md-4">
-                    <h3>Consulting</h3>
-                    <p>
-                        Our experts provide consultancy to solve your technical
-                        challenges.
+                <!-- Content on Top of Video -->
+                <div class="hero-content container">
+                    <h1 class="mb-4">We Build What You Need</h1>
+                    <p class="lead mb-4">
+                        Our organization focuses on delivering customized
+                        products that match the specific needs of our clients.
+                        We pride ourselves on innovation, efficiency, and
+                        customer satisfaction.
                     </p>
                 </div>
-                <div class="col-md-4">
-                    <h3>Support</h3>
-                    <p>
-                        We offer continuous support to ensure your products
-                        function smoothly.
-                    </p>
-                </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- Footer -->
-        <footer class="footer">
-            <p>&copy; 2024 Our Organization. All Rights Reserved.</p>
-        </footer>
+            <!-- Services Section -->
+            <section id="services" class="container py-5">
+                <div class="row text-center">
+                    <div class="col-md-4">
+                        <h3>Custom Software</h3>
+                        <p>
+                            We develop software tailored to your business needs.
+                        </p>
+                    </div>
+                    <div class="col-md-4">
+                        <h3>Consulting</h3>
+                        <p>
+                            Our experts provide consultancy to solve your
+                            technical challenges.
+                        </p>
+                    </div>
+                    <div class="col-md-4">
+                        <h3>Support</h3>
+                        <p>
+                            We offer continuous support to ensure your products
+                            function smoothly.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <footer class="footer">
+                <p>&copy; 2024 Our Organization. All Rights Reserved.</p>
+            </footer>
+        </div>
 
         <!-- Login Modal -->
         <div

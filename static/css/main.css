@@ -8,11 +8,8 @@
   color: #e0e0e0;
 }
 
-.navbar {
-  border-bottom: 1px solid white;
-}
 .hero-section {
-  padding: 80px 0;
+  /* padding: 80px 0; */
   color: #e0e0e0;
 }
 .footer {
@@ -22,95 +19,171 @@
   border-top: 1px solid white;
 }
 
-.container {
-  display: flex;
-  width: 90vw;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.panel {
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  height: 60vh;
-  border-radius: 50px;
-  color: #ffffff;
-  cursor: pointer;
-  flex: 0.5;
-  margin: 10px;
-  position: relative;
-  transition: flex 0.7s ease-in;
-  box-shadow: 0 4px 6px rgba(255, 255, 255, 0.5);
-}
-
-.panel h3 {
-  font-size: 1.5rem;
+/* Navbar inside Hero */
+.navbar {
+  background-color: rgba(13, 17, 29, 0.9);
+  width: 100%;
   position: absolute;
-  bottom: 20px;
-  left: 20px;
-  margin: 0;
-  opacity: 0;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  top: 0;
+  left: 0;
+  z-index: 10;
+  padding: 10px 0;
 }
 
-.panel.active {
-  flex: 5;
+/* Hero Section */
+#hero {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+  overflow: hidden;
+  border-bottom: 1px solid white;
 }
 
-.panel.active h3 {
-  opacity: 1;
-  transition: opacity 0.3s ease-in 0.4s;
+/* Video Background */
+.video-bg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
 }
 
-/* Media Queries for responsive design */
+/* Hero Content Box */
+.hero-content {
+  position: relative;
+  z-index: 1;
+  background-color: rgba(13, 17, 29, 0.8);
+  padding: 30px;
+  border-radius: 15px;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
+  max-width: 800px;
+  margin: 0 auto;
+  color: white;
+  animation: spin 3s ease-in-out;
+  transition: transform 1s ease-in-out;
+}
 
-/* Tablets */
-@media (max-width: 1024px) {
-  .panel {
-    height: 50vh;
+@keyframes spin {
+  0% {
+    transform: rotate(0) scale(1);
+  }
+  50% {
+    transform: rotate(180deg) scale(0.5);
+    border-radius: 50%;
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+    border-radius: 15px;
+  }
+}
+
+@media (max-width: 991px) {
+  .navbar-nav {
+    display: block;
+    width: 100%;
+    text-align: left;
   }
 
-  .panel h3 {
+  .navbar-brand {
+    display: block;
+    text-align: left;
+    margin-bottom: 10px;
+  }
+
+  .navbar-collapse {
+    justify-content: flex-start;
+  }
+
+  .navbar-nav .nav-item {
+    margin-bottom: 10px;
+  }
+
+  .navbar-nav .nav-item .btn {
+    width: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-content {
+    padding: 20px;
+    max-width: 500px;
+  }
+
+  .navbar {
+    padding: 8px 0;
+  }
+
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+
+  .hero-content p {
+    font-size: 1rem;
+  }
+  
+  .footer {
+    padding: 10px 0;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero-content {
+    padding: 15px;
+    max-width: 400px;
+  }
+
+  .navbar-brand {
     font-size: 1.2rem;
   }
 
-  .panel.active {
-    flex: 3; 
+  .hero-content h1 {
+    font-size: 1.75rem;
+  }
+
+  .hero-content p {
+    font-size: 0.9rem;
+  }
+
+  .btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .modal-content {
+    padding: 10px;
+  }
+
+  .modal-content h5 {
+    font-size: 1.2rem;
   }
 }
 
-/* Mobile devices */
-@media (max-width: 768px) {
-  .container {
-    flex-direction: column;
-    align-items: center;
-    height: 70vh;
-    width: 100vw;
-  }
-  
-  .panel {
-    width: 50%;
-    flex: 0.1;
-    margin: 0.5em 0;
+@media (max-width: 400px) {
+  .hero-content {
+    padding: 10px;
+    max-width: 300px;
   }
 
-  .panel.active {
-    flex: 1;
+  .hero-content h1 {
+    font-size: 1.5rem;
   }
 
-  .panel h3 {
+  .hero-content p {
+    font-size: 0.85rem;
+  }
+
+  .navbar-brand {
     font-size: 1rem;
   }
-}
 
-/* Extra small mobile devices */
-@media (max-width: 480px) {
-  .panel {
-    height: 35vh;
-  }
-
-  .panel h3 {
-    font-size: 0.9rem;
+  .footer {
+    font-size: 0.8rem;
   }
 }

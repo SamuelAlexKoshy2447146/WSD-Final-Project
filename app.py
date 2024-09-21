@@ -8,9 +8,12 @@ from flask import (
     url_for,
     session,
 )
+from typing import Any
+from bson import Binary
 from flask_cors import CORS
 from flask_socketio import SocketIO, emit
 from pymongo import MongoClient
+import base64
 import subprocess
 import sys
 import os
@@ -90,16 +93,33 @@ def login():
 
 @app.route("/update", methods=["POST"])
 def update_details():
-    user_data = session.get("user")
-    if not user_data:
+    user_session_data = session.get("user")
+    if not user_session_data:
         return jsonify({"status": "error", "message": "No user found"}), 400
 
-    # Update user data in MongoDB
-    form_data = request.json
-    user_collection.update_one({"email": user_data["email"]}, {"$set": form_data})
+    # Get data
+    name = request.form.get("name")
+    email = request.form.get("email")
+    mobile = request.form.get("mobile")
+    profile_picture = request.files.get("profile_picture")
 
-    # Update the session with the new data
-    session["user"].update(form_data)
+    # Update MongoDB with the new data
+    user_data: dict[Any, Any] = {
+        "name": name,
+        "email": email,
+        "mobile": mobile,
+    }
+
+    if profile_picture:
+        user_data["profile_picture"] = Binary(profile_picture.read())
+
+    user_email = session["user"].get("email")
+    data = user_collection.update_one({"email": user_email}, {"$set": user_data})
+    print(data)
+
+    # Update session
+    session["user"].update(user_data)
+    session["user"].pop("profile_picture")
     session.modified = True
 
     return jsonify(
@@ -109,6 +129,30 @@ def update_details():
             "user": session["user"],
         }
     )
+
+
+@app.route("/get_user")
+def fetch_data():
+    user_email = session["user"].get("email")
+    
+    user = user_collection.find_one({"email": user_email})
+
+    if not user:
+        return jsonify({"status": "error", "message": "User not found"}), 404
+
+    profile_picture = None
+    if user.get("profile_picture"):
+        profile_picture = base64.b64encode(user["profile_picture"]).decode("utf-8")
+
+    return jsonify({
+        "status": "success",
+        "user": {
+            "name": user.get("name"),
+            "email": user.get("email"),
+            "mobile": user.get("mobile"),
+            "profile_picture": profile_picture
+        }
+    })
 
 
 @app.route("/editor")
