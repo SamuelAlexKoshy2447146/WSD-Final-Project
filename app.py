@@ -1,4 +1,12 @@
-from flask import Flask, request, jsonify, send_from_directory, render_template, redirect, url_for
+from flask import (
+    Flask,
+    request,
+    jsonify,
+    send_from_directory,
+    render_template,
+    redirect,
+    url_for,
+)
 from flask_cors import CORS
 from flask_socketio import SocketIO, emit
 from pymongo import MongoClient
@@ -12,41 +20,60 @@ socketio = SocketIO(app, cors_allowed_origins="*")
 
 # Setup MongoDB connection
 client = MongoClient("mongodb://localhost:27017/")
-db = client['pycoder'] 
-collection = db['user_data']  
+db = client["pycoder"]
+collection = db["user_data"]
 
 
 @app.route("/")
+def start_up():
+    return render_template("main.html")  # login page name
+
+
+@app.route("/home")
 def home():
     return render_template("home.html")  # initial page name
 
 
-@app.route("/login")
-def  login():
-    return render_template("main.html")  # login page name
-
-
 # Route for handling form submission
-@app.route('/submit', methods=['POST'])
+@app.route("/submit", methods=["POST"])
 def submit():
     # Collect data from the form
-    name = request.form['name']
-    email = request.form['email']
-    password = request.form['password']
-    role = request.form['role']
+    # name = request.form['name']
+    # email = request.form['email']
+    # password = request.form['password']
+    # role = request.form['role']
+    data = request.json
+    if not data:
+        return jsonify({"status": "error", "message": "No data provided"}), 400
+
+    email = data.get("email")
+    name = data.get("name")
+    password = data.get("password")
+    role = data.get("role")
 
     # Insert data into MongoDB
     data = {
-        'name': name,
-        'email': email,
+        "name": name,
+        "email": email,
         "password": password,
         "role": role,
     }
     if collection.find_one({"email": email}):
+        print(data)
         return jsonify({"message": "Email already exists"}), 400
     collection.insert_one(data)
 
-    return redirect(url_for('home'))
+    return jsonify({"status": "success", "message": "Registration successful"})
+
+
+@app.route("/login", methods=["POST"])
+def login():
+    data = request.json
+    if not data:
+        return jsonify({"status": "error", "message": "No data provided"}), 400
+    
+    
+    return jsonify({"status": "success"})
 
 
 @app.route("/editor")
