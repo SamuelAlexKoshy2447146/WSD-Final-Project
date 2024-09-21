@@ -84,8 +84,31 @@ def login():
 
     user_data.pop("_id")
     session["user"] = user_data
-    print("user:", user_data)
     return jsonify({"status": "success"})
+
+
+@app.route("/update", methods=["POST"])
+def update_details():
+    user_data = session.get("user")
+    if not user_data:
+        return jsonify({"status": "error", "message": "No user found"}), 400
+
+    # Update user data in MongoDB
+    form_data = request.json
+    collection.update_one({"email": user_data["email"]}, {"$set": form_data})
+
+    # Update the session with the new data
+    session["user"].update(form_data)
+    session.modified = True
+    render_template("profile.html")
+
+    return jsonify(
+        {
+            "status": "success",
+            "message": "User details updated",
+            "user": session["user"],
+        }
+    )
 
 
 @app.route("/editor")
@@ -107,6 +130,7 @@ def profile_page():
     if "user" in session:
         return render_template("profile.html")
     return redirect(url_for("home"))
+
 
 @app.route("/review")
 def review():
