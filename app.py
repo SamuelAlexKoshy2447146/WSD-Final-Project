@@ -139,6 +139,28 @@ def review():
     return redirect(url_for("home"))
 
 
+@app.route("/review/post", methods=["POST"])
+def post_review():
+    data = request.json
+    if not data:
+        return jsonify({"status": "error", "message": "No data provided"}), 400
+    email = session["user"].get("email")
+
+    review_data = {
+        "title": data.get("title"),
+        "content": data.get("content"),
+        "name": session["user"].get("name"),
+        "email": session["user"].get("email"),
+    }
+    if review_collection.find_one({"email": email}):
+        review_collection.update_one({"email": email}, {"$set": data})
+    else:
+        review_collection.insert_one(review_data)
+    print(review_data)
+
+    return jsonify({"status": "success", "message": "Review posted"})
+
+
 @app.route("/run", methods=["POST"])
 def run_code():
     data = request.json

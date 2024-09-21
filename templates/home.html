@@ -116,7 +116,7 @@
                             <ul class="navbar-nav me-auto"></ul>
                             <ul class="navbar-nav">
                                 <li class="nav-item">
-                                    <span>Hi, Name</span>
+                                    <span id="navbarName">Hi, Name</span>
                                 </li>
                             </ul>
                         </div>
@@ -221,6 +221,11 @@
             src="https://kit.fontawesome.com/cc6961611c.js"
             crossorigin="anonymous"
         ></script>
+        <script>
+            var username = "{{ session['user'].get('name') }}";
+            document.getElementById("navbarName").textContent =
+                "Hi, " + username.split()[0];
+        </script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
         <script src="{{ url_for('static', filename='scripts/home.js') }}"></script>

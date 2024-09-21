@@ -12,6 +12,8 @@ toggleSidebarButton.addEventListener("click", function () {
     sidebar.classList.toggle("collapsed"); // Assuming you have a collapsed class for styling
 });
 
+
+
 // document.getElementById("productToggle").addEventListener("click", function(event) {
 //     event.preventDefault(); // Prevent default link behavior
 
