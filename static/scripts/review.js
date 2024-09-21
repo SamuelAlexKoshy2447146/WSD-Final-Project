@@ -13,5 +13,11 @@ document.getElementById("reviewForm").addEventListener("submit", (event) => {
             title: reviewTitle,
             content: reviewContent,
         }),
+    }).then((response) => {
+        document.getElementById("notification").style.display = "block";
+        setTimeout(() => {
+            document.getElementById("notification").style.display = "none";
+        }, 3000);
+        return response.json();
     });
 });

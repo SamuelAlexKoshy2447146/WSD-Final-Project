@@ -30,9 +30,25 @@
                 flex-direction: column;
                 justify-content: space-between;
             }
+
+            .notification {
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                z-index: 1050;
+                background-color: green;
+                color: white;
+                padding: 15px 20px;
+                border-radius: 5px;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+                transition: opacity 0.5s ease;
+                opacity: 1;
+                display: none;
+            }
         </style>
     </head>
     <body>
+        <p id="notification" class="notification">Review submission successful</p>
         <div class="wrapper">
             <aside id="sidebar">
                 <div class="d-flex">
