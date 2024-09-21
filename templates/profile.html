@@ -173,25 +173,27 @@
                             </div>
                         </div>
 
-                        <!-- First Name and Last Name -->
                         <div class="row mb-3">
                             <div class="col-md-6">
-                                <label for="first-name" class="form-label"
-                                    >First Name</label
+                                <label for="name" class="form-label"
+                                    >Name</label
                                 >
                                 <input
                                     type="text"
                                     class="form-control"
-                                    id="first-name"
+                                    id="name"
                                     placeholder="First Name"
                                 />
+                                <p
+                                    id="nameError"
+                                    class="text-red-500 text-sm absolute right-0 top-full mt-1"
+                                ></p>
                             </div>
                             <div class="col-md-6">
                                 <label for="user-type" class="form-label"
                                     >User Type</label
                                 >
-                                <select class="form-select" id="user-type">
-                                    <option selected>Select type</option>
+                                <select class="form-select" id="role">
                                     <option value="student">Student</option>
                                     <option value="teacher">Teacher</option>
                                     <option value="professional">
@@ -214,6 +216,10 @@
                                     id="email"
                                     placeholder="you@example.com"
                                 />
+                                <p
+                                    id="emailError"
+                                    class="text-red-500 text-sm absolute right-0 top-full mt-1"
+                                ></p>
                             </div>
                             <div class="col-md-6">
                                 <label for="mobile" class="form-label"
@@ -225,6 +231,10 @@
                                     id="mobile"
                                     placeholder="Mobile Number"
                                 />
+                                <p
+                                    id="mobileError"
+                                    class="text-red-500 text-sm absolute right-0 top-full mt-1"
+                                ></p>
                             </div>
                         </div>
 
@@ -271,7 +281,7 @@
             var email = "{{ session['user'].get('email') }}";
             var mobile = "{{ session['user'].get('mobile')}}";
 
-            document.getElementById("first-name").value = username;
+            document.getElementById("name").value = username;
             document.getElementById("email").value = email;
             document.getElementById("mobile").value = mobile || "";
             document.getElementById("navbarName").textContent =

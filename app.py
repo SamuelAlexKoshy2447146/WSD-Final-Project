@@ -151,6 +151,7 @@ def fetch_data():
                 "name": user.get("name"),
                 "email": user.get("email"),
                 "mobile": user.get("mobile"),
+                "role": user.get("role"),
                 "profile_picture": profile_picture,
             },
         }

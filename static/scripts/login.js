@@ -58,6 +58,7 @@ function hideError(errorId, iconId) {
     document.getElementById(errorId).textContent = "";
     document.getElementById(iconId).style.display = "none";
 }
+
 function validateName() {
     console.log();
     const name = document.getElementById("registerName").value.trim();
